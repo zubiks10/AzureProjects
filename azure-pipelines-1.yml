@@ -1,0 +1,17 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - script: |
+      npm install
+      npm run build
+    displayName: 'Install and Build'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: 'dist'
+      artifactName: 'drop'
+    displayName: 'Publish Artifact'
